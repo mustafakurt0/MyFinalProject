@@ -30,14 +30,6 @@ namespace ConsoleUI
                     Console.WriteLine("Balance  : 18");
                 }
 
-                else if (input != "get" )
-                {
-                    int categoryId = int.Parse(input);
-                    foreach (Product product in productManager.GetAllByCategory(categoryId))
-                    {
-                        Console.WriteLine(product.ProductName);
-                    }
-                }
             }
 
         }

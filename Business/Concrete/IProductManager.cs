@@ -25,10 +25,10 @@ namespace Business.Concrete
 
         }
 
-        public List<Product> GetAllByCategory(int categoryId)
-        {
-            return _productDal.GetAllByCategory(categoryId);
+        //public List<Product> GetAllByCategory(int categoryId)
+        //{
+        //    return _productDal.GetAllByCategory(categoryId);
 
-        }
+        //}
     }
 }
