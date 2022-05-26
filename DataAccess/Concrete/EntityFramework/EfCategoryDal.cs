@@ -9,7 +9,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal : IEntityRepository<Category>
+    public class EfCategoryDal : ICategoryDal
     {
         public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
         {
