@@ -4,9 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Abstract;
+using Core.Entities;
 
-namespace DataAccess.Abstract
+
+namespace Core.DataAccess
 {
     //generic constraint
     //IEntity : IEntity olabilir veya IEntity implemente eden bir nesne  olabilir
