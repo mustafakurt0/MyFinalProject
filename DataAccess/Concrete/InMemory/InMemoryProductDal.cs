@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -61,6 +62,11 @@ namespace DataAccess.Concrete.InMemory
             Product productToDelete = _products.FirstOrDefault(x => x.ProductId == product.ProductId);
             _products.Remove(productToDelete);
             Console.WriteLine("Product Deleted");
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public List<Product> GetAllByCategory(int categoryId)
