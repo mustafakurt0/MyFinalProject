@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Core.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -11,11 +12,11 @@ using Entities.DTOs;
 
 namespace Business.Concrete
 {
-    public record IProductManager : IProductService
+    public record ProductManager : IProductService
     {
         private IProductDal _productDal;
 
-        public IProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
@@ -23,7 +24,7 @@ namespace Business.Concrete
         public IDataResult<List<Product>> GetAll()
         {
             //İş kodları
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll());
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
 
         }
 
