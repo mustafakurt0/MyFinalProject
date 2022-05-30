@@ -45,8 +45,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
-        public IResult Add()
+        public IDataResult<Product> GetById(int productId)
         {
+            var result = _productDal.Get(p => p.ProductId == productId);
+            return new SuccessDataResult<Product>(result , "Product Getirildi");
+        }
+
+        public IResult Add(Product product)
+        {
+            _productDal.Add(product);
             return new SuccessResult("Eklendi");
         }
     }
