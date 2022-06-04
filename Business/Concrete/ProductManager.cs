@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -58,18 +59,16 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(result , "Product Getirildi");
         }
 
+        [SecuredOperation("admin,product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            IResult result = BusinessRules.Run(
-                CountProductOfCategory(product.CategoryId), 
-                CheckSameProductName(product.ProductName),
-                ExistCategoryCount());
+            //IResult result = BusinessRules.Run();
 
-            if (result != null)
-            {
-                return result;
-            }
+            //if (result != null)
+            //{
+            //    return result;
+            //}
 
             _productDal.Add(product);
             return new SuccessResult("Eklendi");
