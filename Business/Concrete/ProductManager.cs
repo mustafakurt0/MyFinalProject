@@ -7,6 +7,7 @@ using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -29,6 +30,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
+        [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
             //İş kodları
@@ -53,6 +55,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
+        [CacheAspect]
         public IDataResult<Product> GetById(int productId)
         {
             var result = _productDal.Get(p => p.ProductId == productId);
@@ -61,6 +64,7 @@ namespace Business.Concrete
 
         [SecuredOperation("admin,product.add")]
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             //IResult result = BusinessRules.Run();
@@ -74,6 +78,11 @@ namespace Business.Concrete
             return new SuccessResult("Eklendi");
 
 
+            
+        }
+
+        public IResult AddTransactionalTest(Product product)
+        {
             
         }
 
