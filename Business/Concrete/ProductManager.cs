@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Business.BusinessAspects.Autofac;
@@ -30,9 +31,10 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
-        [CacheAspect]
+        //[CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
+            Thread.Sleep(1000);
             //İş kodları
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductsListed);
 
@@ -83,7 +85,12 @@ namespace Business.Concrete
 
         public IResult AddTransactionalTest(Product product)
         {
-            
+            return null;
+        }
+
+        public IDataResult<List<Product>> GetByCategoryId(int categoryId)
+        {
+            throw new NotImplementedException();
         }
 
         private IResult ExistCategoryCount()
